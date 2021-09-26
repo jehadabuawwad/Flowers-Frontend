@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ProfileCards from '../components/ProfileCards';
 
 export default class Profile extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <ProfileCards />
+      </div>
+    );
+  }
 }
