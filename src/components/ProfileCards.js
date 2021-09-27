@@ -3,7 +3,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-export default class ProfileCards extends Component {
+import { withAuth0 } from '@auth0/auth0-react';
+class ProfileCards extends Component {
   render() {
     return (
       <>
@@ -37,3 +38,4 @@ export default class ProfileCards extends Component {
     );
   }
 }
+export default withAuth0(ProfileCards);

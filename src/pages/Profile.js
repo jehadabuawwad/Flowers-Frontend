@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import ProfileCards from '../components/ProfileCards';
 import UpdateModal from '../components/UpdateModal';
-import Row from 'react-bootstrap/Row';
+import { withAuth0 } from '@auth0/auth0-react';
+import Card from 'react-bootstrap/Card';
+import { Row, Col, Container } from 'react-bootstrap';
 require('dotenv').config();
 const REACT_APP_BACK_END_URL = process.env.REACT_APP_BACK_END_URL;
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,19 +79,40 @@ export default class Profile extends Component {
   };
 
   render() {
+    const user = this.props.auth0.user;
     return (
       <div>
-        <Row xs={1} md={2}>
-          {this.state.booksData.map((element) => {
-            return (
-              <ProfileCards
-                element={element}
-                handleDeleteBook={this.handleDeleteBook}
-                handelDisplayUpdateModal={this.handelDisplayUpdateModal}
-              />
-            );
-          })}
-        </Row>
+        <Container>
+          <Row style={{ marginTop: 25, marginBottom: 25 }}>
+            <Col md={{ span: 4, offset: 4 }}>
+              <Card style={{ width: 'auto' }}>
+                <Card.Img
+                  variant='top'
+                  src={user.picture}
+                  alt=''
+                  style={{ width: 'auto' }}
+                />
+                <Card.Body>
+                  <Card.Title>Name: {user.name}</Card.Title>
+                  <Card.Text>Email :{user.email}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+        <Container>
+          <Row xs={1} md={2}>
+            {this.state.booksData.map((element) => {
+              return (
+                <ProfileCards
+                  element={element}
+                  handleDeleteBook={this.handleDeleteBook}
+                  handelDisplayUpdateModal={this.handelDisplayUpdateModal}
+                />
+              );
+            })}
+          </Row>
+        </Container>
         <UpdateModal
           selectedBookDataObj={this.state.selectedBookDataObj}
           showUpdateModal={this.state.showUpdateModal}
@@ -100,3 +123,5 @@ export default class Profile extends Component {
     );
   }
 }
+
+export default withAuth0(Profile);
