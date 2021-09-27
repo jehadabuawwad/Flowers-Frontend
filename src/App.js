@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
-
 import Header from './components/Header';
-import Books from './components/Books';
+import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
 export default class App extends Component {
@@ -22,7 +21,7 @@ export default class App extends Component {
               <Route exact path='/'>
                 <Row>
                   <Col>
-                    <Books />
+                    <Home />
                   </Col>
                 </Row>
               </Route>
