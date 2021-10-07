@@ -13,7 +13,7 @@ class Header extends React.Component {
       <>
         <Navbar style={{ marginBottom: 50 }} bg='dark' variant='dark'>
           <Container>
-            <Navbar.Brand href='/'>Booker</Navbar.Brand>
+            <Navbar.Brand href='/'>Flower Club</Navbar.Brand>
             <Nav className='me-auto'>
               <Nav.Link href='/'>Home</Nav.Link>
               {isAuth && (
